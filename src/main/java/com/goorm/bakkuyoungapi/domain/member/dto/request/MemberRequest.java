@@ -25,7 +25,6 @@ public class MemberRequest {
     @NotBlank(message = "이름를 입력하세요.")
     private String memberName;
 
-    private String phoneNum;
 
     //일반사용자용
     public Member toMember(String password) {

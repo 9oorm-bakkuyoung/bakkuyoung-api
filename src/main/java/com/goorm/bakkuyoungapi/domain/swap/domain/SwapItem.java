@@ -1,11 +1,11 @@
 package com.goorm.bakkuyoungapi.domain.swap.domain;
 
 import com.goorm.bakkuyoungapi.domain.common.entity.BaseEntity;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "swap")
@@ -13,17 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Swap extends BaseEntity {
+public class SwapItem extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long swapItemNo;
+
     private Long swapNo;
-
-    private SwapStatus status;
-
-
-    //
-
 
 
 }
