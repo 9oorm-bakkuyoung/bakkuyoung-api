@@ -36,6 +36,8 @@ public class Member implements UserDetails {
     @Enumerated(EnumType.STRING)
     private MemberType memberType = MemberType.NORMAL;
 
+    private Long swapNo;
+
 
     @Builder
     private Member(String email, String password, String memberName) {

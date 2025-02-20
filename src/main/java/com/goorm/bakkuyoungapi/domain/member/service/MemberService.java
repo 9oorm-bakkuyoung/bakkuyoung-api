@@ -73,7 +73,7 @@ public class MemberService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
         }
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        UserDetails userDetails = getUserDetails();
 
         Optional<Member> member = memberRepository.findByEmail(userDetails.getUsername());
         if (member.isPresent()) {
@@ -84,7 +84,28 @@ public class MemberService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
         }
 
+    }
 
+    public Long getMemberId() {
+        UserDetails userDetails = getUserDetails();
+
+        Optional<Member> member = memberRepository.findByEmail(userDetails.getUsername());
+        if (member.isPresent()) {
+            Member currentMember = member.get();
+            return currentMember.getMemberNo();
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
+        }
+    }
+
+    public UserDetails getUserDetails() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
+        }
+
+        return (UserDetails) authentication.getPrincipal();
     }
 
     public List<MemberDetail> getAllMembers() {

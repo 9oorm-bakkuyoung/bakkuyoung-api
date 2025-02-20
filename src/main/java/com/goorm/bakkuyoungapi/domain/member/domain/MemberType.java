@@ -6,12 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum MemberType implements EnumCodeType {
+public enum MemberType {
 
-    NORMAL("MBT01", "일반"),
-
-    ;
-
-    private final String codeValue;
-    private final String codeDesc;
+    NORMAL;
 }
