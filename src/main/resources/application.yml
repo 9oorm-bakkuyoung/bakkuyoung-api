@@ -1,7 +1,7 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://mysqldb:3306/krampoline
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysqldb:3306/krampoline?useSSL=false
     username: root
     password: root
   jpa:
