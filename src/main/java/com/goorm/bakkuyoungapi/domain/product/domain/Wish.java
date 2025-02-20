@@ -1,24 +1,26 @@
-package com.goorm.bakkuyoungapi.domain.chat.domain;
+package com.goorm.bakkuyoungapi.domain.product.domain;
 
-import com.goorm.bakkuyoungapi.domain.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Table(name = "Chat")
+@Table(name = "Wish")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Chat extends BaseEntity {
+@Setter
+public class Wish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long chatNo;
+    private Long wishNo;
+
+    private String wishName;
 
     private Long productNo;
 
-    //
 
 }

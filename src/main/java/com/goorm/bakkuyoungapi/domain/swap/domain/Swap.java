@@ -9,17 +9,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "SWAP", description = "교환")
-@RestController
-@RequestMapping("/api/swap")
-@RequiredArgsConstructor
+
 public class Swap extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long swapId;
 
-    private String status;
+    private SwapStatus status;
+
 
 
 }
