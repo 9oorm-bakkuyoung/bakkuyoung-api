@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://mysqldb:3306/krampoline?serverTimezone=UTC
+    username: root
     password: root
-    username: 1234
   jpa:
     properties:
       hibernate:
