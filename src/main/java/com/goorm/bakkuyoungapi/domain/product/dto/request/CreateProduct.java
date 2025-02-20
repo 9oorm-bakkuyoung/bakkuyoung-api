@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,5 +15,8 @@ public class CreateProduct {
 
     private String description;
 
+    private String heartYn;
+
+    private List<String> wishList;
 
 }

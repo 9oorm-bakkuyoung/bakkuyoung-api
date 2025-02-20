@@ -30,6 +30,9 @@ public class Product {
 
     private String imageUrl;
 
-    private Long memberId;
+    private Long memberNo;
+
+    @Column(nullable = false)
+    private String heartYn = "N";
 
 }

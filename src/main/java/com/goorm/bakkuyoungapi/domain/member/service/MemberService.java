@@ -86,7 +86,7 @@ public class MemberService {
 
     }
 
-    public Long getMemberId() {
+    public Long getMemberNo() {
         UserDetails userDetails = getUserDetails();
 
         Optional<Member> member = memberRepository.findByEmail(userDetails.getUsername());

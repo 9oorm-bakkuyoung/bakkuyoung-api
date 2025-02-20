@@ -1,15 +1,18 @@
 package com.goorm.bakkuyoungapi.domain.product.service;
 
 import com.goorm.bakkuyoungapi.domain.member.service.MemberService;
+import com.goorm.bakkuyoungapi.domain.product.dao.ProductQuerydslRepository;
 import com.goorm.bakkuyoungapi.domain.product.dao.ProductRepository;
 import com.goorm.bakkuyoungapi.domain.product.domain.Product;
 import com.goorm.bakkuyoungapi.domain.product.dto.request.CreateProduct;
+import com.goorm.bakkuyoungapi.domain.product.dto.response.ProductDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -17,7 +20,9 @@ import java.util.UUID;
 public class ProductService {
 
     private final MemberService memberService;
+    private final WishService wishService;
 
+    private final ProductQuerydslRepository productQuerydslRepository;
     private final ProductRepository productRepository;
     private final String uploadDir = "uploads/";
 
@@ -29,9 +34,9 @@ public class ProductService {
         product.setPrice(createProduct.getPrice());
         product.setDescription(createProduct.getDescription());
         product.setImageUrl(imageUrl);
-        product.setMemberId(memberService.getMemberId());
+        product.setMemberNo(memberService.getMemberNo());
 
-        productRepository.save(product);
+        product = productRepository.save(product);
 
     }
 
@@ -54,5 +59,10 @@ public class ProductService {
         image.transferTo(file);
 
         return "/uploads/" + fileName; // 저장된 이미지의 URL
+    }
+
+    public List<ProductDetail> getAllProducts() {
+
+        return productQuerydslRepository.findAllMembers();
     }
 }
