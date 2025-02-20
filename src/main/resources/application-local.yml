@@ -1,14 +1,14 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysqldb:3306/krampoline?useSSL=false
-    password: root
+    url: jdbc:mysql://localhost:13306/mysql
     username: root
+    password: 1234
   jpa:
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-        ddl-auto: update
-
     database-platform: org.hibernate.dialect.MySQLDialect
