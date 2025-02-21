@@ -43,5 +43,4 @@ public class AuthController {
         return ResponseDto.of(response);
     }
 
-    // todo. 로그아웃
 }

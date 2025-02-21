@@ -26,7 +26,7 @@ public class SwapController {
     }
 
     @Operation(summary = "교환수락", description = "교환")
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/accept")
     public ResponseDto<String> accept(@RequestBody Long swapNo) {
         swapService.accept(swapNo);
         return ResponseDto.ok();
