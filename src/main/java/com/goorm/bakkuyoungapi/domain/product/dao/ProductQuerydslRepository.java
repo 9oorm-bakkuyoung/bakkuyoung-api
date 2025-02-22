@@ -21,19 +21,19 @@ public class ProductQuerydslRepository extends QuerydslRepositorySupport {
         this.queryFactory = queryFactory;
     }
 
-
     QProduct product = QProduct.product;
 
-
-    public List<ProductDetail> findAllMembers() {
+    public List<ProductDetail> findAllProducts() {
         return queryFactory
                 .select(Projections.constructor(ProductDetail.class,
                         product.productNo,
                         product.productName,
                         product.description,
                         product.imageUrl,
-                        product.creatorNo,
-                        product.heartYn))
+                        product.heartYn,
+                        product.latitude,
+                        product.longitude,
+                        product.creatorNo))
                 .from(product)
                 .fetch();
     }

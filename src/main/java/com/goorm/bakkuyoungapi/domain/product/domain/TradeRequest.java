@@ -3,6 +3,7 @@ package com.goorm.bakkuyoungapi.domain.product.domain;
 import com.goorm.bakkuyoungapi.domain.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,17 @@ public class TradeRequest extends BaseEntity {
 
     private Long offeredProductNo; // 교환제안상품
 
-    private TradeType tradeType;
+    private TradeStatus tradeStatus;
+
+    @Builder
+    private TradeRequest(Long requestedProductNo, Long offeredProductNo) {
+        this.requestedProductNo = requestedProductNo;
+        this.offeredProductNo = offeredProductNo;
+        this.tradeStatus = TradeStatus.PENDING;
+    }
+
+    public void accept() {
+        this.tradeStatus = TradeStatus.ACCEPTED;
+    }
 
 }

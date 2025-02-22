@@ -5,6 +5,6 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum TradeType {
+public enum TradeStatus {
     PENDING, ACCEPTED, REJECTED;
 }

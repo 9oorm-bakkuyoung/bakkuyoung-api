@@ -22,4 +22,9 @@ public class WishProduct extends BaseOnlyTimeEntity {
 
     private Long productNo;
 
+    public WishProduct(String wishProductName, Long productNo) {
+        this.wishProductName = wishProductName;
+        this.productNo = productNo;
+    }
+
 }

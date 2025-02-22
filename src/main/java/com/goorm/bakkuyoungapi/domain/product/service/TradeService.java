@@ -2,42 +2,31 @@ package com.goorm.bakkuyoungapi.domain.product.service;
 
 import com.goorm.bakkuyoungapi.domain.product.dao.ProductRepository;
 import com.goorm.bakkuyoungapi.domain.product.dao.TradeRequestRepository;
+import com.goorm.bakkuyoungapi.domain.product.domain.TradeRequest;
+import com.goorm.bakkuyoungapi.domain.product.dto.request.CreateTrade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TradeService {
 
     private final TradeRequestRepository tradeRequestRepository;
     private final ProductRepository productRepository;
 
+    //교환신청
+    public Long request(CreateTrade createTrade) {
+        return tradeRequestRepository.save(createTrade.toTradeRequest()).getTradeRequestNo();
+    }
 
-//    public Long create(SwapCreate swapCreate) {
-//        Swap swap = new Swap();
-//        swap.setStatus(SwapStatus.PENDING);
-//        swap = swapRepository.save(swap);
-//
-//        Long swapNo = swap.getSwapNo();
-//
-//        for (Long productNo : swapCreate.getProductNos()) {
-//            SwapItem swapItem = new SwapItem();
-//            swapItem.setSwapItemNo(productNo);
-//            swapItem.setSwapNo(swapNo);
-//            swapItemRepository.save(swapItem);
-//
-//            Long memberNo = productRepository.findMemberNoByProductNo(productNo).get().getCreatorNo();
-//
-//        }
-//
-//        return swapNo;
-//    }
-//
-//    public void accept(Long swapNo) {
-//        swapRepository.findById(swapNo).ifPresent(swap -> {
-//            swap.setStatus(SwapStatus.MATCHED);
-//        });
-//    }
-
+    //교환승인(채팅방 번호 리턴)
+    public Long accept(Long tradeRequestNo) {
+        //교환 상태 변경
+        tradeRequestRepository.findById(tradeRequestNo).ifPresent(TradeRequest::accept);
+        //todo. 채팅방 생성후 채팅방번호 리턴
+        return null;
+    }
 
 }

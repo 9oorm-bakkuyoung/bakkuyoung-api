@@ -23,9 +23,6 @@ public class WishService {
         }
     }
 
-    public List<String> getWishList(Long productNo) {
-        List<WishProduct> wishProductList = wishProductRepository.findByProductNo(productNo);
-        return wishProductList.stream().map(WishProduct::getWishProductName).collect(Collectors.toList());
-    }
+
 
 }

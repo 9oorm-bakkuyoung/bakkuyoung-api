@@ -2,10 +2,7 @@ package com.goorm.bakkuyoungapi.domain.product.domain;
 
 import com.goorm.bakkuyoungapi.domain.common.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -35,5 +32,15 @@ public class Product extends BaseEntity {
     private BigDecimal latitude; //위도
 
     private BigDecimal longitude; //경도
+
+    @Builder
+    private Product(String productName, String description, String imageUrl, String heartYn, BigDecimal latitude, BigDecimal longitude) {
+        this.productName = productName;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.heartYn = heartYn;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
 }

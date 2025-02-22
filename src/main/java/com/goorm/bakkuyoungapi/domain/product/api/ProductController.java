@@ -28,7 +28,7 @@ public class ProductController {
 
     @Operation(summary = "전체상품 조회", description = "교환 가능 상품을 조회함")
     @GetMapping("/all")
-    public ResponseDto<List<ProductDetail>> getMembers() {
+    public ResponseDto<List<ProductDetail>> getProducts() {
         List<ProductDetail> productDetails = productService.getAllProducts();
         return ResponseDto.of(productDetails);
     }
