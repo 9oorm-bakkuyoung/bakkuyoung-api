@@ -1,25 +1,24 @@
-package com.goorm.bakkuyoungapi.domain.swap.domain;
+package com.goorm.bakkuyoungapi.domain.chat.domain;
 
 import com.goorm.bakkuyoungapi.domain.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "swap")
+@Table(name = "message")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
-public class SwapItem extends BaseEntity {
+public class Message extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long swapItemNo;
+    private Long messageNo;
 
-    private Long swapNo;
+    private Long chatRoomNo;
 
+    private String message;
 
 }

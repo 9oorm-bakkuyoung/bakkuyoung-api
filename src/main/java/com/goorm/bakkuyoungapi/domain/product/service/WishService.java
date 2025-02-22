@@ -1,7 +1,7 @@
 package com.goorm.bakkuyoungapi.domain.product.service;
 
-import com.goorm.bakkuyoungapi.domain.product.dao.WishRepository;
-import com.goorm.bakkuyoungapi.domain.product.domain.Wish;
+import com.goorm.bakkuyoungapi.domain.product.dao.WishProductRepository;
+import com.goorm.bakkuyoungapi.domain.product.domain.WishProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class WishService {
 
-    private final WishRepository wishRepository;
+    private final WishProductRepository wishProductRepository;
 
     public void create(List<String> names, Long productNo) {
         for (String name : names) {
-            Wish wish = new Wish();
-            wish.setProductNo(productNo);
-            wish.setWishName(name);
-            wishRepository.save(wish);
+            WishProduct wishProduct = new WishProduct();
+//            wishProduct.setProductNo(productNo);
+//            wishProduct.setWishName(name);
+            wishProductRepository.save(wishProduct);
         }
     }
 
     public List<String> getWishList(Long productNo) {
-        List<Wish> wishList = wishRepository.findByProductNo(productNo);
-        return wishList.stream().map(Wish::getWishName).collect(Collectors.toList());
+        List<WishProduct> wishProductList = wishProductRepository.findByProductNo(productNo);
+        return wishProductList.stream().map(WishProduct::getWishProductName).collect(Collectors.toList());
     }
 
 }

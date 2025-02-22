@@ -1,24 +1,24 @@
 package com.goorm.bakkuyoungapi.domain.product.domain;
 
+import com.goorm.bakkuyoungapi.domain.common.entity.BaseOnlyTimeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "Wish")
+@Table(name = "wish_product")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
-public class Wish {
+public class WishProduct extends BaseOnlyTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long wishNo;
+    private Long wishProductNo;
 
-    private String wishName;
+    @Column(nullable = false)
+    private String wishProductName;
 
     private Long productNo;
 

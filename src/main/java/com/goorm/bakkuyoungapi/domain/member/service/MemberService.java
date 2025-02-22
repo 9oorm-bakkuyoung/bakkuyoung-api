@@ -41,13 +41,13 @@ public class MemberService {
         Member member = memberRequest.toMember(bCryptPasswordEncoder.encode(memberRequest.getPassword()));
         member = memberRepository.save(member);
 
-        return new MemberDetail(member.getMemberNo(), member.getEmail(), member.getMemberName());
+        return new MemberDetail(member.getMemberNo(), member.getId(), member.getMemberName());
     }
 
     public LoginResponse login(LoginRequest loginRequest, HttpServletRequest request) {
 
         UsernamePasswordAuthenticationToken authToken =
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
+                new UsernamePasswordAuthenticationToken(loginRequest.getId(), loginRequest.getPassword());
 
         Authentication authentication = authenticationManager.authenticate(authToken);
 
@@ -75,10 +75,10 @@ public class MemberService {
 
         UserDetails userDetails = getUserDetails();
 
-        Optional<Member> member = memberRepository.findByEmail(userDetails.getUsername());
+        Optional<Member> member = memberRepository.findById(userDetails.getUsername());
         if (member.isPresent()) {
             Member currentMember = member.get();
-            MemberDetail detail = new MemberDetail(currentMember.getMemberNo(), currentMember.getEmail(), currentMember.getMemberName());
+            MemberDetail detail = new MemberDetail(currentMember.getMemberNo(), currentMember.getId(), currentMember.getMemberName());
             return detail;
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
@@ -89,7 +89,7 @@ public class MemberService {
     public Long getMemberNo() {
         UserDetails userDetails = getUserDetails();
 
-        Optional<Member> member = memberRepository.findByEmail(userDetails.getUsername());
+        Optional<Member> member = memberRepository.findById(userDetails.getUsername());
         if (member.isPresent()) {
             Member currentMember = member.get();
             return currentMember.getMemberNo();

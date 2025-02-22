@@ -28,7 +28,7 @@ public class MemberQuerydslRepository extends QuerydslRepositorySupport {
         return queryFactory
                 .select(Projections.constructor(MemberDetail.class,
                         member.memberNo,
-                        member.email,
+                        member.id,
                         member.memberName))
                 .from(member)
                 .fetch();

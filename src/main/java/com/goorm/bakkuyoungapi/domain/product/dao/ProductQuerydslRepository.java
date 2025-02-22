@@ -29,10 +29,10 @@ public class ProductQuerydslRepository extends QuerydslRepositorySupport {
         return queryFactory
                 .select(Projections.constructor(ProductDetail.class,
                         product.productNo,
-                        product.price,
+                        product.productName,
                         product.description,
                         product.imageUrl,
-                        product.memberNo,
+                        product.creatorNo,
                         product.heartYn))
                 .from(product)
                 .fetch();

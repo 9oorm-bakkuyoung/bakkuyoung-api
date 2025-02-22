@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateWish {
+public class CreateWishProduct {
 
     private double price;
 
     private String description;
-
 
 }

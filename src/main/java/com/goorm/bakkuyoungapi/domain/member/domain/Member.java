@@ -1,5 +1,6 @@
 package com.goorm.bakkuyoungapi.domain.member.domain;
 
+import com.goorm.bakkuyoungapi.domain.common.entity.BaseOnlyTimeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,14 +18,14 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Member implements UserDetails {
+public class Member extends BaseOnlyTimeEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberNo;
 
     @Column(nullable = false, unique = true, length = 30)
-    private String email; //아이디로 사용
+    private String id;
 
     @Column(nullable = false)
     private String password;
@@ -36,14 +37,12 @@ public class Member implements UserDetails {
     @Enumerated(EnumType.STRING)
     private MemberType memberType = MemberType.NORMAL;
 
-    private Long swapNo;
-
-
     @Builder
-    private Member(String email, String password, String memberName) {
-        this.email = email;
+    private Member(String id, String password, String memberName) {
+        this.id = id;
         this.password = password;
         this.memberName = memberName;
+        this.memberType = MemberType.NORMAL;
     }
 
     @Override
@@ -53,6 +52,6 @@ public class Member implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.id;
     }
 }

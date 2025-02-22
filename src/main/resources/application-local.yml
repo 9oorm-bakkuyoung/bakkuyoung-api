@@ -1,14 +1,19 @@
 spring:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:13306/mysql
-    username: root
+    url: jdbc:h2:~/t
+    username: sa
     password: 1234
+
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
-        show_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
-    database-platform: org.hibernate.dialect.MySQLDialect

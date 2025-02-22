@@ -9,7 +9,7 @@ public class MemberDetail {
 
     private Long memberNo;
 
-    private String email;
+    private String id;
 
     private String memberName;
 

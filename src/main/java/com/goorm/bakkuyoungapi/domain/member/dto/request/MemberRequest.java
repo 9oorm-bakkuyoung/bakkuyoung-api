@@ -1,7 +1,6 @@
 package com.goorm.bakkuyoungapi.domain.member.dto.request;
 
 import com.goorm.bakkuyoungapi.domain.member.domain.Member;
-import com.goorm.bakkuyoungapi.domain.member.domain.MemberType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +15,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MemberRequest {
 
-    @NotBlank(message = "이름을 입력하세요.")
-    private String email;
+    @NotBlank(message = "아이디를 입력하세요.")
+    private String id;
 
     @NotBlank(message = "비밀번호를 입력하세요.")
     private String password;
@@ -29,7 +28,7 @@ public class MemberRequest {
     //일반사용자용
     public Member toMember(String password) {
         return Member.builder()
-                .email(email)
+                .id(id)
                 .password(password)
                 .memberName(memberName)
                 .build();

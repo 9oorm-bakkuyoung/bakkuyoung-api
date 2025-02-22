@@ -26,14 +26,12 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final String uploadDir = "uploads/";
 
-    public void create(CreateProduct createProduct){
+    public void create(CreateProduct createProduct) {
 
 //        String imageUrl = saveImage(file);
 
         Product product = new Product();
-        product.setPrice(createProduct.getPrice());
         product.setDescription(createProduct.getDescription());
-        product.setMemberNo(memberService.getMemberNo());
 
         product = productRepository.save(product);
 
