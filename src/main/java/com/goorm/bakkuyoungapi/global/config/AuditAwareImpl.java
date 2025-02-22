@@ -1,21 +1,22 @@
 package com.goorm.bakkuyoungapi.global.config;
 
+import com.goorm.bakkuyoungapi.global.config.auth.MemberDetailsImpl;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.Optional;
 
-public class AuditAwareImpl implements AuditorAware<String> {
+public class AuditAwareImpl implements AuditorAware<Long> {
 
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public Optional<Long> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (null == authentication || !authentication.isAuthenticated()) {
-            return null;
+//        if (null == authentication || !authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated() && authentication.getName().equals("anonymousUser")) {
+            return Optional.of(0L);
         }
-        User user = (User) authentication.getPrincipal();
-        return Optional.of(user.getUsername());
+        MemberDetailsImpl member = (MemberDetailsImpl) authentication.getPrincipal();
+        return Optional.of(member.getMemberNo());
     }
 }

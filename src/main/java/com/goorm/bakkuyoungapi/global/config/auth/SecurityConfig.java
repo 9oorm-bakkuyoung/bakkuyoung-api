@@ -1,6 +1,7 @@
 package com.goorm.bakkuyoungapi.global.config.auth;
 
 import jakarta.servlet.DispatcherType;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +35,6 @@ public class SecurityConfig {
             "/h2-console/**",
     };
 
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -46,12 +46,16 @@ public class SecurityConfig {
                                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                                 .dispatcherTypeMatchers(DispatcherType.ERROR, DispatcherType.ASYNC).permitAll()
                                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                                .requestMatchers("/api/auth/signup", "/api/auth/login").permitAll()
+                                .requestMatchers("/api/auth/join", "/api/auth/login").permitAll()
                                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .httpBasic(HttpBasicConfigurer::disable)
                 .formLogin(FormLoginConfigurer::disable)
+                .logout(logout -> logout.permitAll()
+                        .logoutSuccessHandler((request, response, authentication) -> {
+                            response.setStatus(HttpServletResponse.SC_OK);
+                        }))
                 .build();
     }
 
@@ -79,6 +83,5 @@ public class SecurityConfig {
         authProvider.setPasswordEncoder(passwordEncoder());
         return new ProviderManager(authProvider);
     }
-
 
 }

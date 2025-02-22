@@ -18,7 +18,7 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Member extends BaseOnlyTimeEntity implements UserDetails {
+public class Member implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +42,6 @@ public class Member extends BaseOnlyTimeEntity implements UserDetails {
         this.id = id;
         this.password = password;
         this.memberName = memberName;
-        this.memberType = MemberType.NORMAL;
     }
 
     @Override

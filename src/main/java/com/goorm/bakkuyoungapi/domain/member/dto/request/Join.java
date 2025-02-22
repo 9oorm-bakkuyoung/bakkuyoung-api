@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-//멤버 등록,수정시 사용
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberRequest {
+public class Join {
 
     @NotBlank(message = "아이디를 입력하세요.")
     private String id;
@@ -33,6 +32,5 @@ public class MemberRequest {
                 .memberName(memberName)
                 .build();
     }
-
 
 }
