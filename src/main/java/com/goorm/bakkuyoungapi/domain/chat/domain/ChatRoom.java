@@ -19,4 +19,8 @@ public class ChatRoom extends BaseOnlyTimeEntity {
 
     private Long tradeRequestNo;
 
+    public ChatRoom(Long tradeRequestNo) {
+        this.tradeRequestNo = tradeRequestNo;
+    }
+
 }

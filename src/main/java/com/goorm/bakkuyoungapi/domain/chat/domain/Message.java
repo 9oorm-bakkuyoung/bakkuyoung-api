@@ -21,4 +21,9 @@ public class Message extends BaseEntity {
 
     private String message;
 
+    public Message(Long chatRoomNo, String message) {
+        this.chatRoomNo = chatRoomNo;
+        this.message = message;
+    }
+
 }

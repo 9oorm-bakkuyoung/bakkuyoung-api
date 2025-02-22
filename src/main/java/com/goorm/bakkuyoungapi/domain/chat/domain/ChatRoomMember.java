@@ -19,4 +19,9 @@ public class ChatRoomMember {
     Long chatRoomNo;
 
     Long memberNo;
+
+    public ChatRoomMember(Long chatRoomNo, Long memberNo) {
+        this.chatRoomNo = chatRoomNo;
+        this.memberNo = memberNo;
+    }
 }
