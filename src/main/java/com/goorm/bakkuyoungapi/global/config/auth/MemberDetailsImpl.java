@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 @Getter
 public class MemberDetailsImpl implements UserDetails {
@@ -23,7 +22,7 @@ public class MemberDetailsImpl implements UserDetails {
     @JsonIgnore
     private final String password;
 
-    private final Collection<? extends  GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public MemberDetailsImpl(Long memberNo, String username, String memberName, String password, Collection<? extends GrantedAuthority> authorities) {
         this.memberNo = memberNo;
@@ -44,17 +43,33 @@ public class MemberDetailsImpl implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override
     public String getUsername() {
         return username;
     }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 }

@@ -18,7 +18,6 @@ public class MemberUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
-        UserDetails userDetails = MemberDetailsImpl.build(member);
-        return userDetails;
+        return MemberDetailsImpl.build(member);
     }
 }
