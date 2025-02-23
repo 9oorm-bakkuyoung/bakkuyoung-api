@@ -12,7 +12,6 @@ public class AuditAwareImpl implements AuditorAware<Long> {
     @Override
     public Optional<Long> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (null == authentication || !authentication.isAuthenticated()) {
         if (authentication != null && authentication.isAuthenticated() && authentication.getName().equals("anonymousUser")) {
             return Optional.of(0L);
         }

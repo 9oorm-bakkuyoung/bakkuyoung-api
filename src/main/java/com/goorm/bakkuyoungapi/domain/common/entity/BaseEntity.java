@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,6 +20,7 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "create_datetime", updatable = false)
     private LocalDateTime createDatetime;
 
+    @CreatedBy
     @Column(name = "creator_no", updatable = false)
     private Long creatorNo;
 }

@@ -23,7 +23,7 @@ public class TradeController {
     }
 
     @Operation(summary = "교환 승인", description = "교환신청을 승인함")
-    @PutMapping(value = "/{tradeRequestNo}/request")
+    @PutMapping(value = "/{tradeRequestNo}/accept")
     public ResponseDto<Long> accept(@PathVariable Long tradeRequestNo) {
         return ResponseDto.of(tradeService.accept(tradeRequestNo));
     }
