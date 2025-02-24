@@ -1,6 +1,5 @@
-package com.goorm.bakkuyoungapi.global.config;
+package com.goorm.bakkuyoungapi.global.config.auth;
 
-import com.goorm.bakkuyoungapi.global.config.auth.MemberDetailsImpl;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
