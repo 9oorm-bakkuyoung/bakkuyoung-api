@@ -5,11 +5,14 @@ import com.goorm.bakkuyoungapi.domain.product.domain.Product;
 import com.goorm.bakkuyoungapi.domain.product.domain.QProduct;
 import com.goorm.bakkuyoungapi.domain.product.dto.response.ProductDetail;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductQuerydslRepository extends QuerydslRepositorySupport {
@@ -30,7 +33,7 @@ public class ProductQuerydslRepository extends QuerydslRepositorySupport {
                 .fetchOne();
     }
 
-    public List<ProductDetail> findAllProducts() {
+    public List<ProductDetail> findAllProducts(Long memberNo) {
         return queryFactory
                 .select(Projections.constructor(ProductDetail.class,
                         product.productNo,
@@ -40,10 +43,28 @@ public class ProductQuerydslRepository extends QuerydslRepositorySupport {
                         product.heartYn,
                         product.latitude,
                         product.longitude,
+                        Expressions.constant(Collections.emptyList()),
                         product.creatorNo))
                 .from(product)
+                .where(product.creatorNo.ne(memberNo))
                 .fetch();
     }
 
+    public Optional<ProductDetail> findProductByNo(Long productNo) {
+        return Optional.ofNullable(queryFactory
+                .select(Projections.constructor(ProductDetail.class,
+                        product.productNo,
+                        product.productName,
+                        product.description,
+                        product.imageUrl,
+                        product.heartYn,
+                        product.latitude,
+                        product.longitude,
+                        Expressions.constant(Collections.emptyList()),
+                        product.creatorNo))
+                .from(product)
+                .where(product.productNo.eq(productNo))
+                .fetchOne());
+    }
 
 }

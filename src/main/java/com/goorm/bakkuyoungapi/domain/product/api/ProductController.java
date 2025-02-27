@@ -35,4 +35,11 @@ public class ProductController {
         return ResponseDto.of(productDetails);
     }
 
+    @Operation(summary = "상품 조회", description = "상품번호로 상품 정보를 조회함")
+    @GetMapping("/{productNo}")
+    public ResponseDto<ProductDetail> getProduct(@PathVariable Long productNo) {
+        ProductDetail detail = productService.getProductByNo(productNo);
+        return ResponseDto.of(detail);
+    }
+
 }

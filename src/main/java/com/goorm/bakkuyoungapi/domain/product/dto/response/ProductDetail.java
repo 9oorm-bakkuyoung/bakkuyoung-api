@@ -28,6 +28,8 @@ public class ProductDetail {
 
     private BigDecimal longitude; //경도
 
+    private List<String> wishProductNames;
+
     private Long creatorNo;
 
 }
