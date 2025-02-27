@@ -1,6 +1,5 @@
 package com.goorm.bakkuyoungapi.domain.member.service;
 
-import com.goorm.bakkuyoungapi.domain.member.dao.MemberQuerydslRepository;
 import com.goorm.bakkuyoungapi.domain.member.dao.MemberRepository;
 import com.goorm.bakkuyoungapi.domain.member.domain.Member;
 import com.goorm.bakkuyoungapi.domain.member.dto.request.Join;
