@@ -7,6 +7,7 @@ import com.goorm.bakkuyoungapi.domain.member.dto.request.Join;
 import com.goorm.bakkuyoungapi.domain.member.dto.request.LoginRequest;
 import com.goorm.bakkuyoungapi.domain.member.dto.response.LoginResponse;
 import com.goorm.bakkuyoungapi.domain.member.dto.response.MemberDetail;
+import com.goorm.bakkuyoungapi.global.security.LoginUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -37,7 +38,8 @@ public class MemberService {
     private final AuthenticationManager authenticationManager;
 
     private final MemberRepository memberRepository;
-    private final MemberQuerydslRepository memberQuerydslRepository;
+
+    private final LoginUtil loginUtil;
 
     //사용자 등록
     @Transactional
@@ -77,37 +79,13 @@ public class MemberService {
 
     //로그인된 사용자정보 확인
     public MemberDetail getCurrentMember() {
-        Optional<Member> member = memberRepository.findById(getMemberNo());
+        Optional<Member> member = memberRepository.findById(loginUtil.getMemberNo());
         if (member.isPresent()) {
             Member currentMember = member.get();
             return new MemberDetail(currentMember.getMemberNo(), currentMember.getId(), currentMember.getMemberName());
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
         }
-
     }
-
-    //로그인된 사용자번호 확인
-    public Long getMemberNo() {
-        UserDetails userDetails = getUserDetails();
-        Optional<Member> member = memberRepository.findById(userDetails.getUsername());
-
-        if (member.isPresent()) {
-            return member.get().getMemberNo();
-        } else {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
-        }
-    }
-
-    public UserDetails getUserDetails() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User is not authenticated");
-        }
-
-        return (UserDetails) authentication.getPrincipal();
-    }
-
 
 }
