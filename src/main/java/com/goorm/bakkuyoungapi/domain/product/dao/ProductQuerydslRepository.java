@@ -3,10 +3,8 @@ package com.goorm.bakkuyoungapi.domain.product.dao;
 
 import com.goorm.bakkuyoungapi.domain.product.domain.Product;
 import com.goorm.bakkuyoungapi.domain.product.domain.QProduct;
-import com.goorm.bakkuyoungapi.domain.product.domain.QTradeRequest;
 import com.goorm.bakkuyoungapi.domain.product.dto.response.ProductDetail;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;

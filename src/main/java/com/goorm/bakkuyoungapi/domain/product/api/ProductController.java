@@ -7,7 +7,9 @@ import com.goorm.bakkuyoungapi.domain.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -20,9 +22,9 @@ public class ProductController {
     private final ProductService productService;
 
     @Operation(summary = "상품 등록", description = "내 상품을 등록함")
-    @PostMapping(value = "/add")
-    public ResponseDto<String> save(@RequestBody CreateProduct createProduct) {
-        productService.create(createProduct);
+    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseDto<String> save(@RequestPart("product") CreateProduct createProduct, @RequestPart("image") MultipartFile image) {
+        productService.create(createProduct, image);
         return ResponseDto.ok();
     }
 

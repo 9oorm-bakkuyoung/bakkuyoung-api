@@ -29,7 +29,7 @@ public class Product extends BaseEntity {
     @Column(nullable = false)
     private String heartYn = "N";
 
-    private BigDecimal latitude; //위도
+    private BigDecimal latitude; //위도 todo.위치서비스
 
     private BigDecimal longitude; //경도
 
