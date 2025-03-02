@@ -67,4 +67,20 @@ public class ProductQuerydslRepository extends QuerydslRepositorySupport {
                 .fetchOne());
     }
 
+    public List<ProductDetail> findMyProducts(Long memberNo) {
+        return queryFactory
+                .select(Projections.constructor(ProductDetail.class,
+                        product.productNo,
+                        product.productName,
+                        product.description,
+                        product.imageUrl,
+                        product.heartYn,
+                        product.latitude,
+                        product.longitude,
+                        Expressions.constant(Collections.emptyList()),
+                        product.creatorNo))
+                .from(product)
+                .where(product.creatorNo.eq(memberNo))
+                .fetch();
+    }
 }

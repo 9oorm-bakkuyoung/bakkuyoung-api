@@ -30,7 +30,7 @@ public class ProductController {
 
     @Operation(summary = "전체상품 조회", description = "교환 가능 상품을 조회함")
     @GetMapping("/all")
-    public ResponseDto<List<ProductDetail>> getProducts() {
+    public ResponseDto<List<ProductDetail>> getAllProducts() {
         List<ProductDetail> productDetails = productService.getAllProducts();
         return ResponseDto.of(productDetails);
     }
@@ -40,6 +40,13 @@ public class ProductController {
     public ResponseDto<ProductDetail> getProduct(@PathVariable Long productNo) {
         ProductDetail detail = productService.getProductByNo(productNo);
         return ResponseDto.of(detail);
+    }
+
+    @Operation(summary = "내 상품 조회", description = "내 교환 가능 상품을 조회함")
+    @GetMapping("/my")
+    public ResponseDto<List<ProductDetail>> getMyProducts() {
+        List<ProductDetail> productDetails = productService.getMyProducts();
+        return ResponseDto.of(productDetails);
     }
 
 }

@@ -59,6 +59,11 @@ public class ProductService {
         return convertToProductDetail(product);
     }
 
+    public List<ProductDetail> getMyProducts() {
+        List<ProductDetail> products = productQuerydslRepository.findMyProducts(loginUtil.getMemberNo());
+        return products.stream().map(this::convertToProductDetail).collect(Collectors.toList());
+    }
+
     private ProductDetail convertToProductDetail(ProductDetail product) {
         List<String> wishProductNames = wishProductQuerydslRepository.findWishProductNamesByProductNo(product.getProductNo());
         product.setWishProductNames(wishProductNames);
