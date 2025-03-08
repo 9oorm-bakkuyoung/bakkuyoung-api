@@ -26,10 +26,12 @@ public class ProductDetail {
 
     private BigDecimal latitude; //위도
 
-    private BigDecimal longitude; //경도
+    private BigDecimal longitude; //경도 todo. 이렇게 보내면 위치명 알수있는지?
 
     private List<String> wishProductNames;
 
     private Long creatorNo;
+
+    //todo. 지난시간추가
 
 }

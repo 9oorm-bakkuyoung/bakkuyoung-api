@@ -18,7 +18,7 @@ public class FileService {
     private String uploadDir;
 
     @Value("${server.base-url}")
-    private String baseUrl;
+    private String baseUrl; //todo. 경로 수정
 
     public String upload(MultipartFile file) {
         try {
