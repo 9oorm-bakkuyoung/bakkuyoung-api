@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: application-local-secret.yml
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bakkuyoung
@@ -22,9 +24,3 @@ file:
 
 server:
   base-url: http://localhost:8080
-  servlet:
-    session:
-      cookie:
-        secure: false
-        same-site: none
-        http-only: true

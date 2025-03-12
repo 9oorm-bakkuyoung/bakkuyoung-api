@@ -1,4 +1,6 @@
 spring:
+  config:
+    import: application-secret.yml
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${MYSQL_URL}

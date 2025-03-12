@@ -32,8 +32,7 @@ public class AuthController {
     @Operation(summary = "로그인", description = "로그인")
     @PostMapping("/login")
     public ResponseDto<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
-        memberService.login(loginRequest, request);
-        return ResponseDto.ok();
+        return ResponseDto.of(memberService.login(loginRequest));
     }
 
     @Operation(summary = "로그아웃", description = "로그아웃")
@@ -46,7 +45,7 @@ public class AuthController {
     @Operation(summary = "멤버 정보", description = "로그인된 멤버의 정보를 조회함.")
     @GetMapping("/me")
     public ResponseDto<MemberDetail> getCurrentUser() {
-        MemberDetail response = memberService.getCurrentMember();
+        MemberDetail response = memberService.getCurrentMemberDetail();
         return ResponseDto.of(response);
     }
 
