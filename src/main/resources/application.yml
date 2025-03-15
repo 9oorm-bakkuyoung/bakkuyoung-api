@@ -18,9 +18,14 @@ spring:
     multipart:
       max-file-size: 30MB
       max-request-size: 30MB
+  web:
+    resources:
+      static-locations: file:/home/ubuntu/uploads/
+  mvc:
+    static-path-pattern: "/uploads/**"
 
 file:
-  upload-dir: ./uploads/
+  upload-dir: /home/ubuntu/uploads/
 
 server:
-  base-url: http://localhost:8080
+  base-url: http://ec2-3-38-13-139.ap-northeast-2.compute.amazonaws.com:8080

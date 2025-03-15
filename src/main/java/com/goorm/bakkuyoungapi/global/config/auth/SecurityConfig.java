@@ -49,6 +49,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .dispatcherTypeMatchers(DispatcherType.ERROR, DispatcherType.ASYNC).permitAll()
                                 .requestMatchers(AUTH_WHITELIST).permitAll()
+                                .requestMatchers("/uploads/**").permitAll()
                                 .requestMatchers("/api/auth/join", "/api/auth/login").permitAll()
                                 .anyRequest().authenticated()
                 )

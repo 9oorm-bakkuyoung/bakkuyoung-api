@@ -30,14 +30,15 @@ public class FileService {
             Files.createDirectories(path.getParent());
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
-            return fileName;
+            // 업로드된 파일의 URL 반환
+            return "/uploads/" + fileName;
         } catch (IOException e) {
             throw new RuntimeException("파일 저장 중 오류 :" + e);
         }
     }
 
     public String getFullPath(String fileName) {
-        return baseUrl + "/uploads/" + fileName;
+        return baseUrl + fileName;
     }
 
 }
