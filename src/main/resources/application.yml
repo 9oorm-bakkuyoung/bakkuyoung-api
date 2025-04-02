@@ -1,6 +1,4 @@
 spring:
-  config:
-    import: application-secret.yml
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${MYSQL_URL}
@@ -29,3 +27,6 @@ file:
 
 server:
   base-url: http://ec2-3-38-13-139.ap-northeast-2.compute.amazonaws.com:8080
+
+jwt:
+  secret: ${JWT_SECRET}
