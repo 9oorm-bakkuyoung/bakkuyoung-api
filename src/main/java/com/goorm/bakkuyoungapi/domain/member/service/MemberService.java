@@ -8,6 +8,8 @@ import com.goorm.bakkuyoungapi.domain.member.dto.response.LoginResponse;
 import com.goorm.bakkuyoungapi.domain.member.dto.response.MemberDetail;
 import com.goorm.bakkuyoungapi.global.config.auth.MemberDetailsImpl;
 import com.goorm.bakkuyoungapi.global.config.jwt.JwtProvider;
+import com.goorm.bakkuyoungapi.global.exception.ApplicationException;
+import com.goorm.bakkuyoungapi.global.exception.ErrorCode;
 import com.goorm.bakkuyoungapi.global.security.LoginUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,6 +39,12 @@ public class MemberService {
     //사용자 등록
     @Transactional
     public MemberDetail join(Join join) {
+
+        //아이디 중복 확인
+        memberRepository.findById(join.getId()).ifPresent(member -> {
+            throw new ApplicationException(ErrorCode.DUPLICATE_MEMBER_ID);
+        });
+
         Member member = join.toMember(bCryptPasswordEncoder.encode(join.getPassword()));
         member = memberRepository.save(member);
 
